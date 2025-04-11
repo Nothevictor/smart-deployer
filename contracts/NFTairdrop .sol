@@ -4,7 +4,7 @@ pragma solidity ^0.8.22;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-// Контракт ERC721Airdroper
+
 contract ERC721Airdroper is ERC721, Ownable {
     uint256 public nextTokenId;
     address public airdropReceiver;
@@ -18,7 +18,7 @@ contract ERC721Airdroper is ERC721, Ownable {
         airdropReceiver = _airdropReceiver;
     }
 
-    // Оригинальная функция airdrop (отправляет все NFT на airdropReceiver)
+    
     function airdrop(uint256 amount) external onlyOwner {
         require(amount > 0, "Amount must be greater than zero");
 
@@ -28,7 +28,7 @@ contract ERC721Airdroper is ERC721, Ownable {
         }
     }
 
-    // Новая функция для отправки NFT на несколько адресов
+    
     function airdropToMultiple(address[] calldata receivers) external onlyOwner {
         require(receivers.length > 0, "No receivers specified");
 
@@ -39,13 +39,13 @@ contract ERC721Airdroper is ERC721, Ownable {
         }
     }
 
-    // Переопределение _baseURI (опционально, для метаданных)
+    
     function _baseURI() internal view virtual override returns (string memory) {
         return "ipfs://QmExampleBaseURI/";
     }
 }
 
-// Фабрика для создания контрактов ERC721Airdroper
+
 contract ERC721AirdroperFactory {
     address[] public deployedAirdropers;
     event AirdroperCreated(address indexed airdroperAddress, string name, string symbol, address airdropReceiver);
