@@ -1,0 +1,128 @@
+{
+	"compiler": {
+		"version": "0.8.29+commit.ab55807c"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "AlreadyInitialized",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "bigBoss",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_number",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_bigBoss",
+						"type": "address"
+					}
+				],
+				"name": "getInitData",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "_initData",
+						"type": "bytes"
+					}
+				],
+				"name": "initialize",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "number",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/BigBoss.sol": "BigBoss"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/BigBoss.sol": {
+			"keccak256": "0x10d2d95a08e3250682bc0498b56680977d27958fba80f8c0da9491dc871d4bbb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://fa5115995185fd74c5a99210fbe3a91cd0fac56d1505f9bb7afe977f40a92507",
+				"dweb:/ipfs/QmX3EaFixHJvjJK4YfMHH9wno83nozrFoQVu1NVap6LDp5"
+			]
+		},
+		"contracts/IUtilityContract.sol": {
+			"keccak256": "0xb1bde6a3e3b87c6d8cfe66e3ab5269c43040093fffc7b8e0ee597c860d5ea67c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://734278516b32dc50b6baa39c1e628890d025caf867bba83e02bfac29cb8506e2",
+				"dweb:/ipfs/QmSk6mbZquSRXA4P2KaXJG1afTiVgLsrXtcejjGagBrrua"
+			]
+		}
+	},
+	"version": 1
+}
