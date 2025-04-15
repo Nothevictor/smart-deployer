@@ -17,12 +17,42 @@
 			},
 			{
 				"inputs": [],
+				"name": "BelowMinClaimAmount",
+				"type": "error"
+			},
+			{
+				"inputs": [],
 				"name": "ClaimerIsNotBeneficiary",
 				"type": "error"
 			},
 			{
 				"inputs": [],
 				"name": "CliffNotReached",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "CooldownNotPassed",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InsufficientTokenBalance",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InsufficientTokensOnContract",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidBeneficiaryData",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidParameters",
 				"type": "error"
 			},
 			{
@@ -58,10 +88,57 @@
 				"type": "error"
 			},
 			{
+				"inputs": [],
+				"name": "VestingAlreadyStarted",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "VestingNotStarted",
+				"type": "error"
+			},
+			{
 				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "beneficiary",
+						"type": "address"
+					},
+					{
 						"indexed": false,
+						"internalType": "uint256",
+						"name": "totalAmount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "startTime",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "cliff",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "duration",
+						"type": "uint256"
+					}
+				],
+				"name": "BeneficiaryAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
 						"internalType": "address",
 						"name": "beneficiary",
 						"type": "address"
@@ -86,6 +163,50 @@
 				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newCooldown",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newMinClaimAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "ClaimParametersUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "cooldown",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "minClaimAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "Initialized",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
 						"indexed": true,
 						"internalType": "address",
 						"name": "previousOwner",
@@ -102,13 +223,63 @@
 				"type": "event"
 			},
 			{
-				"inputs": [],
-				"name": "beneficiary",
-				"outputs": [
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address[]",
+						"name": "beneficiaries",
+						"type": "address[]"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "totalTokens",
+						"type": "uint256"
+					}
+				],
+				"name": "VestingStarted",
+				"type": "event"
+			},
+			{
+				"inputs": [
 					{
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"name": "beneficiaries",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "totalAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "cliff",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "duration",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "claimed",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "lastClaimTime",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -123,46 +294,26 @@
 			},
 			{
 				"inputs": [],
+				"name": "claimCooldown",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_beneficiary",
+						"type": "address"
+					}
+				],
 				"name": "claimableAmount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "claimed",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "cliff",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "duration",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -181,17 +332,56 @@
 						"type": "address"
 					},
 					{
-						"internalType": "address",
-						"name": "_treasury",
-						"type": "address"
+						"internalType": "uint256",
+						"name": "_cooldown",
+						"type": "uint256"
 					},
 					{
-						"internalType": "address",
-						"name": "_owner",
-						"type": "address"
+						"internalType": "uint256",
+						"name": "_minClaimAmount",
+						"type": "uint256"
 					}
 				],
 				"name": "getInitData",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "_beneficiaries",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "_totalAmounts",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "_startTimes",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "_cliffs",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "_durations",
+						"type": "uint256[]"
+					}
+				],
+				"name": "getVestingData",
 				"outputs": [
 					{
 						"internalType": "bytes",
@@ -223,6 +413,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "minClaimAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "owner",
 				"outputs": [
 					{
@@ -242,16 +445,34 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "startTime",
-				"outputs": [
+				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "_newCooldown",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_newMinClaimAmount",
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "view",
+				"name": "setClaimParameters",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "_vestingData",
+						"type": "bytes"
+					}
+				],
+				"name": "startVesting",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -262,19 +483,6 @@
 						"internalType": "contract IERC20",
 						"name": "",
 						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "totalAmount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -376,11 +584,11 @@
 			]
 		},
 		"contracts/LiniarVesting/vesting.sol": {
-			"keccak256": "0x68956986ab6d003bcc5c17cae2bece996ef73b6a04d2e388eacb9b1ed54daec5",
+			"keccak256": "0x211d93fe384a4458f6edca9436a662f7657d505fbae7e3e5cddc751c204f018c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c2c3ef0cc5921943525dd0c790a5f1a90969bb370533663ee2b67ab8fa19e51e",
-				"dweb:/ipfs/QmSYDqG6sjfrRMt9cqW3cVyd2qhtjf2uMbHFEACsnTnnJX"
+				"bzz-raw://cc344d8067fc37718ffcbc635ec07ee077482a2c9db6fba43d4552a58e7c0772",
+				"dweb:/ipfs/Qmbhi8FiuBCfstT5JVAxQxseys6LFMQm1gdaHGn8RsRxCb"
 			]
 		}
 	},
